@@ -10,11 +10,7 @@ const SearchInput = ({ value, placeholder, redirectScreen }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    if (redirectScreen) {
-      navigation.navigate(redirectScreen);
-    } else {
-      console.warn("redirectScreen prop is missing in SearchInput component");
-    }
+    navigation.navigate(redirectScreen);
   };
 
   return (
@@ -28,7 +24,7 @@ const SearchInput = ({ value, placeholder, redirectScreen }) => {
       <TouchableOpacity onPress={handlePress}>
         <FontAwesome
           name="search"
-          size={18}
+          size={24}
           color="black"
           style={styles.icon}
         />

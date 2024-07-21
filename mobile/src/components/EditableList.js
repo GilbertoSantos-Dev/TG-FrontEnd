@@ -1,34 +1,33 @@
-import React from 'react';
-import { FlatList, Text, View, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import styles from '../styles/styles';
+import React from "react";
+import {
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import styles from "../styles/styles";
 
-const EditableList = ({ items, onEdit, onDelete, itemTextExtractor }) => {
-  const renderItem = ({ item }) => (
-    <View style={styles.editableListItem}>
-      <Text style={styles.itemText}>{itemTextExtractor(item)}</Text>
-      <View style={styles.editableListIcons}>
-        <TouchableOpacity onPress={() => onEdit(item)}>
-          <Icon name="pencil" size={20} color="blue" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => onDelete(item)} style={styles.trashIcon}>
-          <Icon name="trash" size={20} color="red" />
-        </TouchableOpacity>
+const EditableList = ({ items, onEdit, onDelete }) => (
+  <FlatList
+    style={styles.listContainer}
+    data={items}
+    renderItem={({ item }) => (
+      <View style={styles.item}>
+        <Text>{item}</Text>
+        <View style={styles.icons}>
+          <TouchableOpacity onPress={() => onEdit(item)}>
+            <MaterialIcons name="edit" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => onDelete(item)}>
+            <MaterialIcons name="delete" size={24} style={styles.trashIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
-
-  const ItemSeparator = () => <View style={styles.separator} />;
-
-  return (
-    <FlatList
-      style={styles.listContainer}
-      data={items}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
-      ItemSeparatorComponent={ItemSeparator}
-    />
-  );
-};
+    )}
+    keyExtractor={(item, index) => index.toString()}
+  />
+);
 
 export default EditableList;

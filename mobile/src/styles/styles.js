@@ -5,15 +5,15 @@ const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   button: {
     width: width * 0.8,
-    backgroundColor: 'rgb(58, 155, 92)',
+    backgroundColor: "rgb(58, 155, 92)",
     padding: 10,
     margin: 10,
     borderRadius: 20,
     marginVertical: 10,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   container: {
     flex: 1,

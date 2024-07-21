@@ -1,14 +1,16 @@
 import React from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 import styles from '../styles/styles';
 
-const DisplayOnlyList = ({ data, renderItem, emptyText }) => (
-  <FlatList
-    style={styles.listContainer}
-    data={data}
-    renderItem={renderItem}
-    keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
-    ListEmptyComponent={<Text>{emptyText}</Text>}
+const DisplayOnlyList = ({ items }) => (
+  <FlatList style={styles.listContainer}
+    data={items}
+    renderItem={({ item }) => (
+      <View style={styles.item}>
+        <Text>{item}</Text>
+      </View>
+    )}
+    keyExtractor={(item, index) => index.toString()}
   />
 );
 

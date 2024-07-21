@@ -1,30 +1,31 @@
-import React from 'react';
-import { FlatList, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import styles from '../styles/styles';
 
-const MultiSelectList = ({ items, onSelect, displayProperty, selectedItems }) => {
-  const renderItem = ({ item }) => {
-    const displayValue = item[displayProperty];
-    const isSelected = selectedItems.includes(item.id);
-    return (
-      <TouchableOpacity onPress={() => onSelect(item)}>
-        <View style={[styles.item, isSelected && styles.selectedItem]}>
-          <Text>{displayValue !== undefined && displayValue !== null ? displayValue.toString() : ''}</Text>
-        </View>
-      </TouchableOpacity>
+const MultiSelectList = ({ items }) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleSelect = (item) => {
+    setSelectedItems((prevSelectedItems) =>
+      prevSelectedItems.includes(item)
+        ? prevSelectedItems.filter((i) => i !== item)
+        : [...prevSelectedItems, item]
     );
   };
 
-  console.log('Items passed to MultiSelectList:', items); // Adicione logging para depuração
-
   return (
-    <FlatList
-      style={styles.listContainer}
+    <FlatList style={styles.listContainer}
       data={items}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <TouchableOpacity onPress={() => handleSelect(item)}>
+          <View style={[styles.item, selectedItems.includes(item) && styles.selectedItem]}>
+            <Text>{item}</Text>
+          </View>
+        </TouchableOpacity>
+      )}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };
 
-export default React.memo(MultiSelectList);
+export default MultiSelectList;

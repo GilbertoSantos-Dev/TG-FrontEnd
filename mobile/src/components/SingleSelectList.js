@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import { FlatList, Text, View, TouchableOpacity } from 'react-native';
-import styles from '../../styles/styles';
+import { FlatList, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import styles from '../styles/styles';
 
-const SingleSelectList = ({ items, onSelect, selectedItem }) => {
-  const [selectedItemState, setSelectedItemState] = useState(selectedItem);
+const SingleSelectList = ({ items }) => {
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleSelect = (item) => {
-    setSelectedItemState(item);
-    onSelect(item);
+    setSelectedItem(item);
   };
 
   return (
-    <FlatList
-      style={styles.listContainer}
+    <FlatList style={styles.listContainer}
       data={items}
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => handleSelect(item)}>
-          <View style={[styles.item, selectedItemState?.id === item.id && styles.selectedItem]}>
-            <Text style={styles.itemText}>{item.descricao}</Text>
+          <View style={[styles.item, selectedItem === item && styles.selectedItem]}>
+            <Text>{item}</Text>
           </View>
         </TouchableOpacity>
       )}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };
