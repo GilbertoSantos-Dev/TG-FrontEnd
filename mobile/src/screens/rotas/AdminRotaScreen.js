@@ -1,6 +1,6 @@
 // src/screens/rotas/AdminRotaScreen.js
 import React, { useEffect, useState } from 'react';
-import { View, Text, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { getRotas, deleteRota } from '../../services/RotaService';
 import EditableList from '../../components/EditableList';
 import CustomButton from '../../components/CustomButton';
@@ -24,7 +24,7 @@ const AdminRotaScreen = ({ navigation }) => {
   }, []);
 
   const handleEdit = (rota) => {
-    navigation.navigate('EditRota', { rota });
+    navigation.navigate('EditRota', { id: rota.id });
   };
 
   const handleDelete = async (rota) => {

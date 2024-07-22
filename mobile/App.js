@@ -22,9 +22,13 @@ import NewCarroScreen from "./src/screens/carros/NewCarroScreen";
 
 import LocalScreen from "./src/screens/locais/LocalScreen";
 import AdminLocalScreen from "./src/screens/locais/AdminLocalScreen";
+import EditLocalScreen from "./src/screens/locais/EditLocalScreen";
+import NewLocalScreen from "./src/screens/locais/NewLocalScreen";
 
 import RotaScreen from "./src/screens/rotas/RotaScreen";
 import AdminRotaScreen from "./src/screens/rotas/AdminRotaScreen";
+import EditRotaScreen from "./src/screens/rotas/EditRotaScreen";
+import NewRotaScreen from "./src/screens/rotas/NewRotaScreen";
 
 import UsuarioScreen from "./src/screens/usuarios/UsuarioScreen";
 import AdminUsuarioScreen from "./src/screens/usuarios/AdminUsuarioScreen";
@@ -101,14 +105,18 @@ const App = () => {
 
         <Stack.Screen name="Local" component={LocalScreen} />
         <Stack.Screen name="AdminLocal" component={AdminLocalScreen} />
+        <Stack.Screen name="EditLocal" component={EditLocalScreen} />
+        <Stack.Screen name="NewLocal" component={NewLocalScreen} />
 
         <Stack.Screen name="Rota" component={RotaScreen} />
         <Stack.Screen name="AdminRota" component={AdminRotaScreen} />
+        <Stack.Screen name="EditRota" component={EditRotaScreen} />
+        <Stack.Screen name="NewRota" component={NewRotaScreen} />
 
         <Stack.Screen name="Usuario" component={UsuarioScreen} />
         <Stack.Screen name="AdminUsuario" component={AdminUsuarioScreen} />
         <Stack.Screen name="EditUsuario" component={EditUsuarioScreen} />
-        <Stack.Screen name="NewUsuario" component={NewUsuarioScreen} />        
+        <Stack.Screen name="NewUsuario" component={NewUsuarioScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

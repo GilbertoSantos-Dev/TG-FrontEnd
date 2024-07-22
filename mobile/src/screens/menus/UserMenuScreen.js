@@ -26,6 +26,7 @@ const UserMenuScreen = () => {
         if (storedCarro) setSelectedCarro(storedCarro);
         if (storedEquipe) {
           const equipeData = JSON.parse(storedEquipe);
+          console.log("Equipe carregada do AsyncStorage:", equipeData);
           setEquipe(equipeData);
         }
       } catch (error) {
@@ -45,13 +46,14 @@ const UserMenuScreen = () => {
     }
     if (route.params?.equipe) {
       const equipeData = route.params.equipe;
+      console.log("Equipe passada via navegação:", equipeData);
       setEquipe(equipeData);
       AsyncStorage.setItem("selectedEquipe", JSON.stringify(equipeData));
     }
   }, [route.params]);
 
   const handleNavigate = (screenName) => {
-    navigation.navigate(screenName);
+    navigation.navigate(screenName, { originScreen: "UserMenu" });
   };
 
   const handleLogout = async () => {

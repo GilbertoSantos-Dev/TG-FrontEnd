@@ -3,8 +3,10 @@ import api from "@utils/api";
 export const getRotas = async () => {
   try {
     const response = await api.get("/rotas");
+    console.log("Resposta de /rotas:", response.data);  // Adicione este log
     return response.data;
   } catch (error) {
+    console.error("Erro ao buscar rotas:", error.response ? error.response.data : error.message);
     throw error;
   }
 };

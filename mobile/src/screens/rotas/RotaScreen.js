@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../../styles/styles";
 import { getRotas } from "../../services/RotaService";
@@ -9,6 +9,7 @@ import CustomButton from "../../components/CustomButton";
 
 const RotaScreen = () => {
   const navigation = useNavigation();
+  const route = useRoute();
   const [rotas, setRotas] = useState([]);
   const [selectedRota, setSelectedRota] = useState(null);
 
@@ -28,7 +29,8 @@ const RotaScreen = () => {
   const handleConfirm = async () => {
     if (selectedRota) {
       await AsyncStorage.setItem('selectedRota', selectedRota.descricao);
-      navigation.navigate("UserMenu", { rota: selectedRota.descricao });
+      const originScreen = route.params?.originScreen || "UserMenu";
+      navigation.navigate(originScreen, { rota: selectedRota.descricao });
     }
   };
 

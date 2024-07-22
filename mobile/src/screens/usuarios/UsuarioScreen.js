@@ -22,10 +22,10 @@ const UsuarioScreen = () => {
           nome: usuario.user_name || 'N/A'
         }))
         .sort((a, b) => a.nome.localeCompare(b.nome));
-        console.tron.log("Fetched and formatted users:", formattedUsuarios);
+        console.log("Fetched and formatted users:", formattedUsuarios);
         setUsuarios(formattedUsuarios);
       } catch (error) {
-        console.tron.error('Erro ao buscar usuarios:', error);
+        console.error('Erro ao buscar usuarios:', error);
       }
     };
     fetchUsuarios();
@@ -36,7 +36,7 @@ const UsuarioScreen = () => {
       const newSelected = prevSelected.includes(item.id)
         ? prevSelected.filter((selectedId) => selectedId !== item.id)
         : [...prevSelected, item.id];
-      console.tron.log("Updated selected users:", newSelected);
+      console.log("Updated selected users:", newSelected);
       return newSelected;
     });
   }, []);
@@ -48,7 +48,7 @@ const UsuarioScreen = () => {
       const storedData = await AsyncStorage.getItem("selectedEquipe");
       navigation.navigate("UserMenu", { equipe: selectedUsersData });
     } catch (error) {
-      console.tron.error("Erro ao salvar equipe:", error);
+      console.error("Erro ao salvar equipe:", error);
     }
   };
 

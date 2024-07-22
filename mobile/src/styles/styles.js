@@ -1,3 +1,4 @@
+// src/styles/styles.js
 import { StyleSheet, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -70,8 +71,9 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    marginVertical: 4,
   },
   itemText: {
     fontSize: 16,
