@@ -106,8 +106,18 @@ const styles = StyleSheet.create({
   },
   picker: {
     width: width * 0.8,
-    height: 50,
+    height: 40,
+    backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  pickerContainer: {
+    height: 45,
     margin: 10,
+    borderRadius: 20,
+    overflow: 'hidden',
   },
   searchContainer: {
     flexDirection: "row",
