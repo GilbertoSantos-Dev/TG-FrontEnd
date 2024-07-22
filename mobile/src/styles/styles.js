@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
   iconButton: {
     marginLeft: 10,
   },
+  iconColumn: {
+    flexDirection: 'column', // Altera a direção dos ícones para coluna
+    justifyContent: 'center', // Centraliza na coluna
+  },  
   input: {
     width: width * 0.8,
     height: 40,
