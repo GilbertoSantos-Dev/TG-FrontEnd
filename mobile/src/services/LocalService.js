@@ -47,11 +47,16 @@ export const deleteLocal = async (id) => {
     console.log('Resposta da exclusão:', response.data);
     return response.data;
   } catch (error) {
+    if (error.response) {
+      console.error('Erro de resposta ao excluir local:', error.response.data);
+    } else if (error.request) {
+      console.error('Erro de solicitação ao excluir local:', error.request);
+    } else {
+      console.error('Erro desconhecido ao excluir local:', error.message);
+    }
     if (error.response && error.response.status === 400 && error.response.data.error.includes('IntegrityError')) {
-      console.error('Erro de integridade referencial:', error.response.data.error);
       throw new Error('Não é possível excluir um local que foi utilizado em alguma atividade.');
     } else {
-      console.error('Erro ao excluir local (outro):', error.message);
       throw error;
     }
   }

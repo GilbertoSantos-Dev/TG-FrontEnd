@@ -24,7 +24,7 @@ const SearchInput = ({ value, placeholder, redirectScreen }) => {
       <TouchableOpacity onPress={handlePress}>
         <FontAwesome
           name="search"
-          size={24}
+          size={16}
           color="black"
           style={styles.icon}
         />

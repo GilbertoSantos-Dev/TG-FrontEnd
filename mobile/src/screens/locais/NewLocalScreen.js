@@ -1,10 +1,10 @@
-//src/screens/locais/NewLocalScreen
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "../../styles/styles";
 import { createLocal } from "../../services/LocalService";
+import SearchInput from "../../components/SearchInput";  // Certifique-se de que este componente está importado corretamente
 
 const NewLocalScreen = () => {
   const navigation = useNavigation();
@@ -17,7 +17,7 @@ const NewLocalScreen = () => {
   useEffect(() => {
     if (route.params?.rotaId) {
       setRotaId(route.params.rotaId);
-      setRotaDescricao(route.params.rotaDescricao); // Definindo a descrição da rota
+      setRotaDescricao(route.params.rotaDescricao);
     }
   }, [route.params?.rotaId, route.params?.rotaDescricao]);
 
@@ -36,10 +36,6 @@ const NewLocalScreen = () => {
     }
   };
 
-  const handleNavigateToRota = () => {
-    navigation.navigate("RotaToNewLocal");
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Inserir Novo Local</Text>
@@ -55,17 +51,11 @@ const NewLocalScreen = () => {
         value={endereco}
         onChangeText={setEndereco}
       />
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Descrição da Rota"
-          value={rotaDescricao} // Atualizando o campo de texto com a descrição da rota
-          editable={false}
-        />
-        <TouchableOpacity style={styles.searchIcon} onPress={handleNavigateToRota}>
-          <MaterialIcons name="search" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
+      <SearchInput
+        value={rotaDescricao}
+        placeholder="Selecione uma Rota"
+        redirectScreen="RotaToNewLocal"
+      />
       <TouchableOpacity style={styles.button} onPress={handleCreateLocal}>
         <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>

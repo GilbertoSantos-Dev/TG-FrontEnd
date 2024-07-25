@@ -77,8 +77,7 @@ const AdminLocalScreen = ({ navigation, route }) => {
         items={locais}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        itemTextExtractor={(item) => item.nome} // Extraindo nome do local
-        isLocalScreen={true} // Passando a prop para alterar o layout
+        itemTextExtractor={(item) => `${item.descricao}\n${item.endereco}\nRota: ${item.rota.descricao}`}
       />
     </View>
   );
