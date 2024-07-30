@@ -1,11 +1,13 @@
-//src/screens/atividades/AtividadeScreen.js
+// src/screens/atividades/AtividadeScreen.js
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import { View, Text, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import styles from "../../styles/styles";
 import SearchInput from "../../components/SearchInput";
 import CustomButton from "../../components/CustomButton";
+import CustomTextInput from '../../components/CustomTextInput';
+import DisplayOnlyList from '../../components/DisplayOnlyList'; // Importa o componente DisplayOnlyList
 import api from "@utils/api";
 
 const AtividadeScreen = () => {
@@ -27,26 +29,23 @@ const AtividadeScreen = () => {
         const carro = await AsyncStorage.getItem("selectedCarro");
         const rota = await AsyncStorage.getItem("selectedRota");
         const equipeData = await AsyncStorage.getItem("selectedEquipe");
+        const localData = await AsyncStorage.getItem("selectedLocal");
 
         if (carro) setSelectedCarro(carro);
         if (rota) setSelectedRota(rota);
         if (equipeData) setEquipe(JSON.parse(equipeData));
+        if (localData) setLocal(JSON.parse(localData));
       } catch (error) {
         console.error("Erro ao carregar dados do AsyncStorage:", error);
       }
     };
 
     loadData();
-  }, []);
 
-  useEffect(() => {
-    const loadLocal = async () => {
-      const localData = await AsyncStorage.getItem("selectedLocal");
-      if (localData) {
-        setLocal(JSON.parse(localData));
-      }
-    };
-    loadLocal();
+    // Definir a data no formato dd/mm/aaaa
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
+    setData(formattedDate);
   }, []);
 
   const handleNavigate = (screen) => {
@@ -54,9 +53,15 @@ const AtividadeScreen = () => {
   };
 
   const handleSubmit = async () => {
+    if (!local) {
+      Alert.alert("Erro", "Por favor, selecione um local.");
+      return;
+    }
+  
     const atividadeData = {
       carro: selectedCarro,
       rota: selectedRota,
+      local_id: local.id,  // Adicionando o local_id ao objeto de dados
       equipe,
       km_inicial: parseFloat(kmInicial),
       km_final: parseFloat(kmFinal),
@@ -64,9 +69,9 @@ const AtividadeScreen = () => {
       hora_inicio: horaInicio,
       hora_fim: horaFim,
     };
-
+  
     try {
-      const response = await api.post("/atividades", atividadeData);
+      await api.post("/atividades", atividadeData);
       Alert.alert("Sucesso", "Atividade criada com sucesso!");
     } catch (error) {
       console.error("Erro ao criar atividade:", error);
@@ -76,23 +81,12 @@ const AtividadeScreen = () => {
       );
     }
   };
-
-  const handleSelectLocal = () => {
-    console.log("Selected Rota:", selectedRota);
-    try {
-      navigation.navigate("Local", { rota: selectedRota });
-    } catch (error) {
-      console.error("Erro na navegação:", error);
-    }
-  };
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Criar Nova Atividade</Text>
 
-      <Text>Carro: {selectedCarro}</Text>
-      <Text>Rota: {selectedRota}</Text>
-      <Text>Equipe: {equipe.map((member) => member.nome).join(", ")}</Text>
+      <DisplayOnlyList items={[`Data: ${data}`, `Rota: ${selectedRota}`, `Carro: ${selectedCarro}`, `Equipe: ${equipe.map((member) => member.nome).join(", ")}`]} />
 
       <SearchInput
         value={local ? local.descricao : "Selecionar Local"}
@@ -100,40 +94,33 @@ const AtividadeScreen = () => {
         onPress={() => handleNavigate("Local")}
       />
 
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="KM Inicial"
         value={kmInicial}
         onChangeText={setKmInicial}
         keyboardType="numeric"
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="KM Final"
         value={kmFinal}
         onChangeText={setKmFinal}
         keyboardType="numeric"
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Data"
-        value={data}
-        onChangeText={setData}
-      />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Hora Início"
         value={horaInicio}
         onChangeText={setHoraInicio}
       />
-      <TextInput
+      <CustomTextInput
         style={styles.input}
         placeholder="Hora Fim"
         value={horaFim}
         onChangeText={setHoraFim}
       />
 
-      <CustomButton title="Local" onPress={() => handleNavigate("Local")} />
       <CustomButton title="Cadastrar Vistoria" onPress={handleSubmit} />
     </View>
   );
