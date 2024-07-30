@@ -14,6 +14,7 @@ import AdminMenuScreen from "./src/screens/menus/AdminMenuScreen";
 import UserMenuScreen from "./src/screens/menus/UserMenuScreen";
 
 import AdminAtividadeScreen from "./src/screens/atividades/AdminAtividadeScreen";
+import AtividadeScreen from "./src/screens/atividades/AtividadeScreen";
 
 import CarroScreen from "./src/screens/carros/CarroScreen";
 import AdminCarroScreen from "./src/screens/carros/AdminCarroScreen";
@@ -97,6 +98,7 @@ const App = () => {
         <Stack.Screen name="TestJSON" component={TestJSON} />
 
         <Stack.Screen name="AdminAtividade" component={AdminAtividadeScreen} />
+        <Stack.Screen name="Atividade" component={AtividadeScreen} />
 
         <Stack.Screen name="Carro" component={CarroScreen} />
         <Stack.Screen name="AdminCarro" component={AdminCarroScreen} />

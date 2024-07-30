@@ -83,19 +83,13 @@ const UserMenuScreen = () => {
 
       <CustomButton title="Equipe" onPress={() => handleNavigate("Usuario")} />
 
-      <CustomButton title="Nova vistoria" onPress={() => handleNavigate("Local")} />
+      <CustomButton title="Nova vistoria" onPress={() => handleNavigate("Atividade")} />
 
       <CustomButton title="Teste" onPress={() => handleNavigate("TestScreen")} />
 
       <Text style={styles.title}>Equipe</Text>
       <DisplayOnlyList
-        data={equipe}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text style={styles.listItemText}>{item.nome}</Text>
-          </View>
-        )}
-        emptyText="Nenhum membro da equipe selecionado"
+        items={equipe.map(member => member.nome)}
       />
 
       <View style={styles.buttonContainer}>

@@ -3,16 +3,9 @@
 import React from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 
-const SearchInput = ({ value, placeholder, redirectScreen }) => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate(redirectScreen);
-  };
-
+const SearchInput = ({ value, placeholder, onPress }) => {
   return (
     <View style={styles.searchContainer}>
       <TextInput
@@ -21,7 +14,7 @@ const SearchInput = ({ value, placeholder, redirectScreen }) => {
         value={value}
         editable={false}
       />
-      <TouchableOpacity onPress={handlePress}>
+      <TouchableOpacity onPress={onPress}>
         <FontAwesome
           name="search"
           size={16}

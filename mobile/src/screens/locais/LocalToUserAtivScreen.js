@@ -1,4 +1,3 @@
-// src/screens/locais/LocalScreen.js
 import React, { useState, useEffect } from 'react';
 import { View, Button, Alert, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +6,7 @@ import api from '@utils/api';
 import SingleSelectList from '../../components/SingleSelectList';
 import styles from '../../styles/styles';
 
-const LocalScreen = () => {
+const LocalToUserAtivScreen = () => {
   const [locais, setLocais] = useState([]);
   const [filteredLocais, setFilteredLocais] = useState([]);
   const [selectedLocal, setSelectedLocal] = useState(null);
@@ -72,4 +71,4 @@ const LocalScreen = () => {
   );
 };
 
-export default LocalScreen;
+export default LocalToUserAtivScreen;
