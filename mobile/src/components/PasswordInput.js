@@ -23,7 +23,7 @@ const PasswordInput = ({ value, onChangeText, placeholder }) => {
       <TouchableOpacity onPress={toggleShowPassword}>
         <FontAwesome
           name={showPassword ? "eye" : "eye-slash"}
-          size={24}
+          size={18}
           color="black"
           style={styles.icon}
         />

@@ -1,8 +1,8 @@
 // src/screens/atividades/AtividadeScreen.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import styles from "../../styles/styles";
 import SearchInput from "../../components/SearchInput";
 import CustomButton from "../../components/CustomButton";
@@ -23,30 +23,32 @@ const AtividadeScreen = () => {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const carro = await AsyncStorage.getItem("selectedCarro");
-        const rota = await AsyncStorage.getItem("selectedRota");
-        const equipeData = await AsyncStorage.getItem("selectedEquipe");
-        const localData = await AsyncStorage.getItem("selectedLocal");
+  const loadData = async () => {
+    try {
+      const carro = await AsyncStorage.getItem("selectedCarro");
+      const rota = await AsyncStorage.getItem("selectedRota");
+      const equipeData = await AsyncStorage.getItem("selectedEquipe");
+      const localData = await AsyncStorage.getItem("selectedLocal");
 
-        if (carro) setSelectedCarro(carro);
-        if (rota) setSelectedRota(rota);
-        if (equipeData) setEquipe(JSON.parse(equipeData));
-        if (localData) setLocal(JSON.parse(localData));
-      } catch (error) {
-        console.error("Erro ao carregar dados do AsyncStorage:", error);
-      }
-    };
+      if (carro) setSelectedCarro(carro);
+      if (rota) setSelectedRota(rota);
+      if (equipeData) setEquipe(JSON.parse(equipeData));
+      if (localData) setLocal(JSON.parse(localData));
+    } catch (error) {
+      console.error("Erro ao carregar dados do AsyncStorage:", error);
+    }
+  };
 
-    loadData();
+  useFocusEffect(
+    useCallback(() => {
+      loadData();
 
-    // Definir a data no formato dd/mm/aaaa
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
-    setData(formattedDate);
-  }, []);
+      // Definir a data no formato dd/mm/aaaa
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
+      setData(formattedDate);
+    }, [])
+  );
 
   const handleNavigate = (screen) => {
     navigation.navigate(screen);
@@ -72,7 +74,7 @@ const AtividadeScreen = () => {
   
     try {
       await api.post("/atividades", atividadeData);
-      Alert.alert("Sucesso", "Atividade criada com sucesso!");
+      Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!");
     } catch (error) {
       console.error("Erro ao criar atividade:", error);
       Alert.alert(

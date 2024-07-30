@@ -24,6 +24,7 @@ const UserMenuScreen = () => {
 
         if (storedRota) setSelectedRota(storedRota);
         if (storedCarro) setSelectedCarro(storedCarro);
+
         if (storedEquipe) {
           const equipeData = JSON.parse(storedEquipe);
           console.log("Equipe carregada do AsyncStorage:", equipeData);
@@ -72,34 +73,26 @@ const UserMenuScreen = () => {
       <SearchInput
         value={selectedRota}
         placeholder="Selecione uma Rota"
-        redirectScreen="Rota"
+        onPress={() => handleNavigate("Rota")}
       />
 
       <SearchInput
         value={selectedCarro}
         placeholder="Selecione um Carro"
-        redirectScreen="Carro"
+        onPress={() => handleNavigate("Carro")}
       />
 
       <CustomButton title="Equipe" onPress={() => handleNavigate("Usuario")} />
 
-      <CustomButton title="Nova vistoria" onPress={() => handleNavigate("Atividade")} />
-
-      <CustomButton title="Teste" onPress={() => handleNavigate("TestScreen")} />
-
-      <Text style={styles.title}>Equipe</Text>
-      <DisplayOnlyList
-        items={equipe.map(member => member.nome)}
+      <CustomButton
+        title="Nova vistoria"
+        onPress={() => handleNavigate("Atividade")}
       />
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleLogout}>
-          <Text style={styles.buttonText}>Logoff</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-          <Text style={styles.buttonText}>Trocar Senha</Text>
-        </TouchableOpacity>
-      </View>
+      <Text style={styles.title}>Equipe</Text>
+      <DisplayOnlyList items={equipe.map((member) => member.nome)} />
+
+      <CustomButton title="Logoff" onPress={handleLogout} />
     </View>
   );
 };

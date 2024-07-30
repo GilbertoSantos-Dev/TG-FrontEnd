@@ -97,28 +97,172 @@ const App = () => {
         <Stack.Screen name="TestScreen" component={TestScreen} />
         <Stack.Screen name="TestJSON" component={TestJSON} />
 
-        <Stack.Screen name="AdminAtividade" component={AdminAtividadeScreen} />
-        <Stack.Screen name="Atividade" component={AtividadeScreen} />
+        <Stack.Screen
+          name="AdminAtividade"
+          component={AdminAtividadeScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="Atividade"
+          component={AtividadeScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
 
-        <Stack.Screen name="Carro" component={CarroScreen} />
-        <Stack.Screen name="AdminCarro" component={AdminCarroScreen} />
-        <Stack.Screen name="EditCarro" component={EditCarroScreen} />
-        <Stack.Screen name="NewCarro" component={NewCarroScreen} />
+        <Stack.Screen
+          name="Carro"
+          component={CarroScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="AdminCarro"
+          component={AdminCarroScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="EditCarro"
+          component={EditCarroScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="NewCarro"
+          component={NewCarroScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
 
-        <Stack.Screen name="Local" component={LocalScreen} />
-        <Stack.Screen name="AdminLocal" component={AdminLocalScreen} />
-        <Stack.Screen name="EditLocal" component={EditLocalScreen} />
-        <Stack.Screen name="NewLocal" component={NewLocalScreen} />
+        <Stack.Screen
+          name="Local"
+          component={LocalScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="AdminLocal"
+          component={AdminLocalScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="EditLocal"
+          component={EditLocalScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="NewLocal"
+          component={NewLocalScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
 
-        <Stack.Screen name="Rota" component={RotaScreen} />
-        <Stack.Screen name="AdminRota" component={AdminRotaScreen} />
-        <Stack.Screen name="EditRota" component={EditRotaScreen} />
-        <Stack.Screen name="NewRota" component={NewRotaScreen} />
+        <Stack.Screen
+          name="Rota"
+          component={RotaScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="AdminRota"
+          component={AdminRotaScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="EditRota"
+          component={EditRotaScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="NewRota"
+          component={NewRotaScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
 
-        <Stack.Screen name="Usuario" component={UsuarioScreen} />
-        <Stack.Screen name="AdminUsuario" component={AdminUsuarioScreen} />
-        <Stack.Screen name="EditUsuario" component={EditUsuarioScreen} />
-        <Stack.Screen name="NewUsuario" component={NewUsuarioScreen} />
+        <Stack.Screen
+          name="Usuario"
+          component={UsuarioScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="AdminUsuario"
+          component={AdminUsuarioScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="EditUsuario"
+          component={EditUsuarioScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
+        <Stack.Screen
+          name="NewUsuario"
+          component={NewUsuarioScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: '#fff',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

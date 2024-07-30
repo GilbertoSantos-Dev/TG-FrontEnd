@@ -139,6 +139,12 @@ const styles = StyleSheet.create({
     height: 40,
     color: "black",
   },
+  sectionTitle: {
+    fontSize: 14,
+    marginTop: 10,
+    marginBottom: 5,
+    color: "#FFFFFF",
+  },
   selectedItem: {
     backgroundColor: "lightblue",
   },  

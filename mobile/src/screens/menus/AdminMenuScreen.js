@@ -28,10 +28,6 @@ const AdminMenuScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CustomButton
-        title="Atividades"
-        onPress={() => handleNavigate("AdminAtividade")}
-      />
-      <CustomButton
         title="Carros"
         onPress={() => handleNavigate("AdminCarro")}
       />
@@ -44,6 +40,10 @@ const AdminMenuScreen = ({ navigation }) => {
         title="Usuários"
         onPress={() => handleNavigate("AdminUsuario")}
       />
+      <CustomButton
+        title="Vistorias"
+        onPress={() => handleNavigate("AdminAtividade")}
+      />      
       <CustomButton title="Logoff" onPress={handleLogout} />
     </View>
   );
