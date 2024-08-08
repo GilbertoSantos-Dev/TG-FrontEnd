@@ -1,5 +1,5 @@
 {
-  "name": "mobile",
+  "name": "gestorequipes",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/netinfo": "^11.3.2",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",

@@ -7,7 +7,7 @@ import styles from "../../styles/styles";
 import SearchInput from "../../components/SearchInput";
 import CustomButton from "../../components/CustomButton";
 import CustomTextInput from '../../components/CustomTextInput';
-import DisplayOnlyList from '../../components/DisplayOnlyList'; // Importa o componente DisplayOnlyList
+import DisplayOnlyList from '../../components/DisplayOnlyList';
 import api from "@utils/api";
 
 const AtividadeScreen = () => {
@@ -59,11 +59,11 @@ const AtividadeScreen = () => {
       Alert.alert("Erro", "Por favor, selecione um local.");
       return;
     }
-  
+
     const atividadeData = {
       carro: selectedCarro,
       rota: selectedRota,
-      local_id: local.id,  // Adicionando o local_id ao objeto de dados
+      local_id: local.id,
       equipe,
       km_inicial: parseFloat(kmInicial),
       km_final: parseFloat(kmFinal),
@@ -71,19 +71,30 @@ const AtividadeScreen = () => {
       hora_inicio: horaInicio,
       hora_fim: horaFim,
     };
-  
+
     try {
       await api.post("/atividades", atividadeData);
-      Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!");
+      Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!", [
+        { text: "OK", onPress: () => navigation.goBack() }
+      ]);
     } catch (error) {
       console.error("Erro ao criar atividade:", error);
-      Alert.alert(
-        "Erro",
-        "Houve um erro ao criar a atividade. Por favor, tente novamente."
-      );
+
+      // Armazenar atividade no AsyncStorage em caso de erro
+      try {
+        const pendingActivities = await AsyncStorage.getItem('pendingActivities');
+        const pendingActivitiesArray = pendingActivities ? JSON.parse(pendingActivities) : [];
+        pendingActivitiesArray.push(atividadeData);
+        await AsyncStorage.setItem('pendingActivities', JSON.stringify(pendingActivitiesArray));
+        Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!", [
+          { text: "OK", onPress: () => navigation.goBack() }
+        ]);
+      } catch (storageError) {
+        console.error("Erro ao salvar atividade localmente:", storageError);
+      }
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Criar Nova Atividade</Text>

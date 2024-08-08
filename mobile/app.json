@@ -18,10 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gilbertosantosdev.mobile"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "71b1b857-c2ec-4d63-a709-f947145c4790"
+      }
     }
   }
 }
