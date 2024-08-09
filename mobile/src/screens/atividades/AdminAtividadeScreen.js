@@ -91,7 +91,7 @@ const AdminAtividadeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Administração de Vistorias</Text>
-      <CustomButton title="Nova Visdtoria" onPress={handleNewAtividade} />
+
       <EditableList
         items={atividades}
         onEdit={handleEdit}

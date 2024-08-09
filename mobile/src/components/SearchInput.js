@@ -1,11 +1,20 @@
-// src/components/SearchInput.js
-
 import React from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/styles';
 
-const SearchInput = ({ value, placeholder, onPress }) => {
+const SearchInput = ({ value, placeholder, redirectScreen, originScreen }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    if (redirectScreen) {
+      navigation.navigate(redirectScreen, {
+        originScreen: originScreen  // Passa a origem da navegação dinamicamente
+      });
+    }
+  };
+
   return (
     <View style={styles.searchContainer}>
       <TextInput
@@ -14,7 +23,7 @@ const SearchInput = ({ value, placeholder, onPress }) => {
         value={value}
         editable={false}
       />
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={handlePress}>
         <FontAwesome
           name="search"
           size={16}

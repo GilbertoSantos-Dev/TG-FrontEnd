@@ -26,6 +26,7 @@ import AdminLocalScreen from "./src/screens/locais/AdminLocalScreen";
 import EditLocalScreen from "./src/screens/locais/EditLocalScreen";
 import NewLocalScreen from "./src/screens/locais/NewLocalScreen";
 
+import RotaToNewLocalScreen from "./src/screens/rotas/RotaToNewLocalScreen";
 import RotaScreen from "./src/screens/rotas/RotaScreen";
 import AdminRotaScreen from "./src/screens/rotas/AdminRotaScreen";
 import EditRotaScreen from "./src/screens/rotas/EditRotaScreen";
@@ -101,18 +102,18 @@ const App = () => {
           name="AdminAtividade"
           component={AdminAtividadeScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="Atividade"
           component={AtividadeScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
 
@@ -120,36 +121,36 @@ const App = () => {
           name="Carro"
           component={CarroScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="AdminCarro"
           component={AdminCarroScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="EditCarro"
           component={EditCarroScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="NewCarro"
           component={NewCarroScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
 
@@ -157,36 +158,46 @@ const App = () => {
           name="Local"
           component={LocalScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="AdminLocal"
           component={AdminLocalScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="EditLocal"
           component={EditLocalScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="NewLocal"
           component={NewLocalScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
+          }}
+        />
+
+        <Stack.Screen
+          name="RotaToNewLocal"
+          component={RotaToNewLocalScreen}
+          options={{
+            headerTitle: "",
+            headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
+            headerTintColor: "#fff",
           }}
         />
 
@@ -194,36 +205,36 @@ const App = () => {
           name="Rota"
           component={RotaScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="AdminRota"
           component={AdminRotaScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="EditRota"
           component={EditRotaScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="NewRota"
           component={NewRotaScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
 
@@ -231,36 +242,36 @@ const App = () => {
           name="Usuario"
           component={UsuarioScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="AdminUsuario"
           component={AdminUsuarioScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="EditUsuario"
           component={EditUsuarioScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
         <Stack.Screen
           name="NewUsuario"
           component={NewUsuarioScreen}
           options={{
-            headerTitle: '',
+            headerTitle: "",
             headerStyle: { backgroundColor: "rgb(24, 73, 88)" },
-            headerTintColor: '#fff',
+            headerTintColor: "#fff",
           }}
         />
       </Stack.Navigator>
