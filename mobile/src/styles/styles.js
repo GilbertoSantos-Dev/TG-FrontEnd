@@ -121,6 +121,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
   },
+  readOnlyInput: {
+    height: 40,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#f2f2f2',
+    color: '#333',
+  },
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",

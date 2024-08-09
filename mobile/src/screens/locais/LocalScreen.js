@@ -1,6 +1,5 @@
-// src/screens/locais/LocalScreen.js
 import React, { useState, useEffect } from "react";
-import { View, Button, Alert, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "@utils/api";
@@ -32,8 +31,9 @@ const LocalScreen = () => {
       try {
         const storedRota = await AsyncStorage.getItem("selectedRota");
         if (storedRota) {
+          const rotaData = JSON.parse(storedRota);
           const filtered = locais.filter(
-            (local) => local.rota.descricao.trim() === storedRota.trim()
+            (local) => local.rota.id === rotaData.id
           );
           setFilteredLocais(filtered);
         }

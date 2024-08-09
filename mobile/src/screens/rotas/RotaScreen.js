@@ -28,9 +28,17 @@ const RotaScreen = () => {
 
   const handleConfirm = async () => {
     if (selectedRota) {
-      await AsyncStorage.setItem('selectedRota', selectedRota.descricao);
+      // Cria o objeto com id e descricao
+      const rotaToStore = {
+        id: selectedRota.id,
+        descricao: selectedRota.descricao,
+      };
+
+      // Armazena o objeto no AsyncStorage como uma string JSON
+      await AsyncStorage.setItem('selectedRota', JSON.stringify(rotaToStore));
+      
       const originScreen = route.params?.originScreen || "UserMenu";
-      navigation.navigate(originScreen, { rota: selectedRota.descricao });
+      navigation.navigate(originScreen, { rota: rotaToStore });
     }
   };
 

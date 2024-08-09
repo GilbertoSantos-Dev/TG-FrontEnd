@@ -6,9 +6,10 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import styles from "../../styles/styles";
 import SearchInput from "../../components/SearchInput";
 import CustomButton from "../../components/CustomButton";
-import CustomTextInput from '../../components/CustomTextInput';
-import DisplayOnlyList from '../../components/DisplayOnlyList';
-import api from "@utils/api";
+import CustomTextInput from "../../components/CustomTextInput";
+import DisplayOnlyList from "../../components/DisplayOnlyList";
+import { getCarroById } from "../../services/CarroService";
+import { createAtividade } from "../../services/AtividadeService";
 
 const AtividadeScreen = () => {
   const [selectedCarro, setSelectedCarro] = useState("");
@@ -30,8 +31,8 @@ const AtividadeScreen = () => {
       const equipeData = await AsyncStorage.getItem("selectedEquipe");
       const localData = await AsyncStorage.getItem("selectedLocal");
 
-      if (carro) setSelectedCarro(carro);
-      if (rota) setSelectedRota(rota);
+      if (carro) setSelectedCarro(JSON.parse(carro)); // Parse JSON to object
+      if (rota) setSelectedRota(JSON.parse(rota)); // Parse JSON to object
       if (equipeData) setEquipe(JSON.parse(equipeData));
       if (localData) setLocal(JSON.parse(localData));
     } catch (error) {
@@ -39,15 +40,24 @@ const AtividadeScreen = () => {
     }
   };
 
+  const loadKmInicial = async () => {
+    try {
+      if (selectedCarro) {
+        const carroData = await getCarroById(selectedCarro.id);
+        setKmInicial(carroData.km.toString());
+      }
+    } catch (error) {
+      console.error("Erro ao buscar KM inicial:", error);
+    }
+  };
+
   useFocusEffect(
     useCallback(() => {
-      loadData();
-
-      // Definir a data no formato dd/mm/aaaa
+      loadData().then(() => loadKmInicial());
       const today = new Date();
-      const formattedDate = today.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
+      const formattedDate = today.toLocaleDateString("pt-BR");
       setData(formattedDate);
-    }, [])
+    }, [selectedCarro])
   );
 
   const handleNavigate = (screen) => {
@@ -61,8 +71,8 @@ const AtividadeScreen = () => {
     }
 
     const atividadeData = {
-      carro: selectedCarro,
-      rota: selectedRota,
+      carro: selectedCarro.id, // Save only the ID
+      rota: selectedRota.id, // Save only the ID
       local_id: local.id,
       equipe,
       km_inicial: parseFloat(kmInicial),
@@ -73,21 +83,27 @@ const AtividadeScreen = () => {
     };
 
     try {
-      await api.post("/atividades", atividadeData);
+      await createAtividade(atividadeData);
       Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!", [
-        { text: "OK", onPress: () => navigation.goBack() }
+        { text: "OK", onPress: () => navigation.goBack() },
       ]);
     } catch (error) {
       console.error("Erro ao criar atividade:", error);
 
-      // Armazenar atividade no AsyncStorage em caso de erro
       try {
-        const pendingActivities = await AsyncStorage.getItem('pendingActivities');
-        const pendingActivitiesArray = pendingActivities ? JSON.parse(pendingActivities) : [];
+        const pendingActivities = await AsyncStorage.getItem(
+          "pendingActivities"
+        );
+        const pendingActivitiesArray = pendingActivities
+          ? JSON.parse(pendingActivities)
+          : [];
         pendingActivitiesArray.push(atividadeData);
-        await AsyncStorage.setItem('pendingActivities', JSON.stringify(pendingActivitiesArray));
+        await AsyncStorage.setItem(
+          "pendingActivities",
+          JSON.stringify(pendingActivitiesArray)
+        );
         Alert.alert("Sucesso", "Vistoria cadastrada com sucesso!", [
-          { text: "OK", onPress: () => navigation.goBack() }
+          { text: "OK", onPress: () => navigation.goBack() },
         ]);
       } catch (storageError) {
         console.error("Erro ao salvar atividade localmente:", storageError);
@@ -99,7 +115,14 @@ const AtividadeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Criar Nova Atividade</Text>
 
-      <DisplayOnlyList items={[`Data: ${data}`, `Rota: ${selectedRota}`, `Carro: ${selectedCarro}`, `Equipe: ${equipe.map((member) => member.nome).join(", ")}`]} />
+      <DisplayOnlyList
+        items={[
+          `Data: ${data}`,
+          `Rota: ${selectedRota.descricao}`, // Display only the description
+          `Carro: ${selectedCarro.modelo} - ${selectedCarro.placa}`, // Display model and plate
+          `Equipe: ${equipe.map((member) => member.nome).join(", ")}`,
+        ]}
+      />
 
       <SearchInput
         value={local ? local.descricao : "Selecionar Local"}
@@ -108,11 +131,12 @@ const AtividadeScreen = () => {
       />
 
       <CustomTextInput
-        style={styles.input}
+        style={styles.readOnlyInput}
         placeholder="KM Inicial"
         value={kmInicial}
         onChangeText={setKmInicial}
         keyboardType="numeric"
+        editable={false} // Block editing for KM Inicial
       />
       <CustomTextInput
         style={styles.input}

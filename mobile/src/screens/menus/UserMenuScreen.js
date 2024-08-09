@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../styles/styles";
@@ -22,8 +22,16 @@ const UserMenuScreen = () => {
         const storedCarro = await AsyncStorage.getItem("selectedCarro");
         const storedEquipe = await AsyncStorage.getItem("selectedEquipe");
 
-        if (storedRota) setSelectedRota(storedRota);
-        if (storedCarro) setSelectedCarro(storedCarro);
+        if (storedRota) {
+          const rotaData = JSON.parse(storedRota);
+          setSelectedRota(rotaData.descricao);
+        }
+
+        if (storedCarro) {
+          const carroData = JSON.parse(storedCarro);
+          const carroDisplay = `${carroData.modelo} - ${carroData.placa}`;
+          setSelectedCarro(carroDisplay);
+        }
 
         if (storedEquipe) {
           const equipeData = JSON.parse(storedEquipe);
@@ -38,12 +46,15 @@ const UserMenuScreen = () => {
     loadSelections();
 
     if (route.params?.rota) {
-      setSelectedRota(route.params.rota);
-      AsyncStorage.setItem("selectedRota", route.params.rota);
+      const rotaData = route.params.rota;
+      setSelectedRota(rotaData.descricao);
+      AsyncStorage.setItem("selectedRota", JSON.stringify(rotaData));
     }
     if (route.params?.carro) {
-      setSelectedCarro(route.params.carro);
-      AsyncStorage.setItem("selectedCarro", route.params.carro);
+      const carroData = route.params.carro;
+      const carroDisplay = `${carroData.modelo} - ${carroData.placa}`;
+      setSelectedCarro(carroDisplay);
+      AsyncStorage.setItem("selectedCarro", JSON.stringify(carroData));
     }
     if (route.params?.equipe) {
       const equipeData = route.params.equipe;
@@ -87,6 +98,11 @@ const UserMenuScreen = () => {
       <CustomButton
         title="Nova vistoria"
         onPress={() => handleNavigate("Atividade")}
+      />
+
+      <CustomButton
+        title="Teste"
+        onPress={() => handleNavigate("TestScreen")}
       />
 
       <Text style={styles.title}>Equipe</Text>

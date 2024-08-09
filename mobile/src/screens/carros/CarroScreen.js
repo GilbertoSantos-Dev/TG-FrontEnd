@@ -18,6 +18,8 @@ const CarroScreen = () => {
         const fetchedCarros = await getCarros();
         const formattedCarros = fetchedCarros.map(carro => ({
           id: carro.id,
+          modelo: carro.modelo,
+          placa: carro.placa,
           descricao: `${carro.modelo} - ${carro.placa}`
         }));
         setCarros(formattedCarros);
@@ -30,8 +32,16 @@ const CarroScreen = () => {
 
   const handleConfirm = async () => {
     if (selectedCarro) {
-      await AsyncStorage.setItem('selectedCarro', selectedCarro.descricao);
-      navigation.navigate("UserMenu", { carro: selectedCarro.descricao });
+      const carroToStore = {
+        id: selectedCarro.id,
+        modelo: selectedCarro.modelo,
+        placa: selectedCarro.placa,
+      };
+      // Armazene o carro selecionado como um objeto JSON no AsyncStorage
+      await AsyncStorage.setItem('selectedCarro', JSON.stringify(carroToStore));
+      
+      // Navegue de volta para o UserMenu (a navegação ainda pode usar a descrição, se necessário)
+      navigation.navigate("UserMenu");
     }
   };
 

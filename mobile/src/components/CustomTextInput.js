@@ -1,10 +1,18 @@
-import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-import styles from '../styles/styles';
+import React from "react";
+import { TextInput, StyleSheet } from "react-native";
+import styles from "../styles/styles";
 
-const CustomTextInput = ({ value, onChangeText, placeholder, autoCapitalize = 'none', keyboardType = 'default' }) => (
+const CustomTextInput = ({
+  editable,
+  value,
+  onChangeText,
+  placeholder,
+  autoCapitalize = "none",
+  keyboardType = "default",
+}) => (
   <TextInput
     style={styles.input}
+    editable={editable}
     value={value}
     onChangeText={onChangeText}
     placeholder={placeholder}
